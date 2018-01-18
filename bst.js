@@ -14,6 +14,25 @@ class BST {
     this.root = null;
   }
 
+  isPresent(val) {
+    let current = this.root;
+
+    while (current) {
+      if (val === current.value) {
+        return true;
+      }
+
+      if (val < current.value) {
+        current = current.left;
+      } else {
+        current = current.right;
+      }
+
+    }
+    console.log(current)
+    return false;
+  }
+
   add(root, val) {
     if (root === null) {
       this.root = new Node(val);
@@ -39,7 +58,4 @@ class BST {
 let b = new BST();
 b.add(b.root, 10);
 b.add(b.root, 12);
-b.add(b.root, 80);
-b.add(b.root, 7);
-
-console.log(b.root);
+console.log(b.isPresent(13));
