@@ -26,10 +26,11 @@ class BST {
         current = current.left;
       } else {
         current = current.right;
+        console.log(current)
       }
 
     }
-    console.log(current)
+
     return false;
   }
 
@@ -53,9 +54,42 @@ class BST {
       }
     }
   }
+
+  remove(root, val) {
+    //base case
+    if (root === null) {
+      return this.root;
+    } else if (val < root.value) {
+      root.left = this.remove(root.left, val);
+    } else if (val > root.value) {
+      root.right = this.remove(root.right, val);
+    } else {
+      if (root.left === null) {
+        let temp = root.right;
+
+        root = null;
+        //console.log(temp);
+        return temp;
+      } else if (root.right === null) {
+        let temp = root.left;
+        root = null;
+        return temp;
+      }
+    }
+
+    return root;
+  }
 }
 
 let b = new BST();
 b.add(b.root, 10);
+console.log(b.root);
+b.add(b.root, 9);
+console.log(b.root);
 b.add(b.root, 12);
-console.log(b.isPresent(13));
+console.log(b.root);
+b.add(b.root, 13); //10 - 9 - 12 - 13
+console.log(b.root);
+b.remove(b.root, 13);
+console.log(b.root);
+//console.log(b.root);
