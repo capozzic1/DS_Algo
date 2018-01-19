@@ -55,24 +55,42 @@ class BST {
     }
   }
 
+  findMin(node) {
+    let current = node;
+
+    while (current.left) {
+      current = current.left;
+    }
+    return current;
+
+  }
+
   remove(root, val) {
 
-    if (root === null){
+    if (root === null) {
       return this.root;
-    } else if (root.value < val){
+    } else if (root.value < val) {
       root.right = this.remove(root.right, val);
-    } else if (root.value > val){
+    } else if (root.value > val) {
       root.left = this.remove(root.left, val);
     } else {
-      if (root.left === null){
+      //one child
+      if (root.left === null) {
         let temp = root.right;
         root = null;
         return temp;
-      } else if (root.right === null){
+      } else if (root.right === null) {
         let temp = root.left;
         root = null;
         return temp;
       }
+      //two children
+      //find inorder successor
+      let successor = this.findMin(root.right);
+      //copy successor to root node;
+      root.value = successor.value;
+      //delete inorder successor
+      root.right = this.remove(root.right, successor.value);
     }
     return root;
 
@@ -86,12 +104,16 @@ b.add(b.root, 9);
 
 b.add(b.root, 7);
 
+b.add(b.root, 8);
+
 b.add(b.root, 12);
 
 b.add(b.root, 13); //10 - 9 - 12 - 13
 
-//b.remove(b.root, 13); //10 - 9 - 12 - 13
+//b.remove(b.root, 13); 10 - 9 - 12 - 13
 
 //b.remove(b.root, 14);
 //
 console.log(b.root);
+console.log(b.root.value);
+console.log(b.remove(b.root, 10));
