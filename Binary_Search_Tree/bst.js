@@ -34,6 +34,16 @@ class BST {
     return false;
   }
 
+  search(root, val) {
+    if (root === null || root.value === val) {
+      return root;
+    } else if (root.value > val) {
+      return this.search(root.left, val);
+    } else if (root.value < val) {
+      return this.search(root.right, val);
+    }
+  }
+
   add(root, val) {
     if (root === null) {
       this.root = new Node(val);
@@ -95,25 +105,17 @@ class BST {
     return root;
 
   }
+
 }
 
 let b = new BST();
 b.add(b.root, 10);
-
 b.add(b.root, 9);
-
 b.add(b.root, 7);
-
 b.add(b.root, 8);
-
 b.add(b.root, 12);
+b.add(b.root, 13);
 
-b.add(b.root, 13); //10 - 9 - 12 - 13
+var s = b.search(b.root, 13);
 
-//b.remove(b.root, 13); 10 - 9 - 12 - 13
-
-//b.remove(b.root, 14);
-//
-console.log(b.root);
-console.log(b.root.value);
-console.log(b.remove(b.root, 10));
+console.log(s);
