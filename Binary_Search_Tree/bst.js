@@ -106,16 +106,43 @@ class BST {
 
   }
 
+  inorder(root) {
+    if (root) {
+      this.inorder(root.left);
+      console.log(root.value);
+      this.inorder(root.right);
+    }
+
+  }
+
+  preorder(root) {
+    if (root) {
+      console.log(root.value);
+      this.preorder(root.left);
+      this.preorder(root.right);
+    }
+  }
+
+  postorder(root) {
+    if (root) {
+      this.postorder(root.left);
+
+      this.postorder(root.right);
+
+      console.log(root.value);
+    }
+  }
+
 }
 
 let b = new BST();
 b.add(b.root, 10);
 b.add(b.root, 9);
 b.add(b.root, 7);
+b.add(b.root, 50);
 b.add(b.root, 8);
 b.add(b.root, 12);
 b.add(b.root, 13);
 
-var s = b.search(b.root, 13);
-
-console.log(s);
+//b.preorder(b.root);
+b.postorder(b.root);
