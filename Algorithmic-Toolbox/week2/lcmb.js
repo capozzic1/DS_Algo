@@ -25,8 +25,10 @@ let smaller = Math.min(n1, n2);
 let bigger = Math.max(n1, n2);
 let s1 = smaller;
 
-if (smaller === 1 || bigger === 1){
-  return bigInt(s1).value;
+if (smaller === 1){
+  return bigInt(bigger).value;
+} else if (bigger === 1) {
+  return bigInt(smaller).value;
 }
 
 while (s1 % bigger !== 0){

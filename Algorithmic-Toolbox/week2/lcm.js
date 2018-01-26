@@ -20,18 +20,20 @@ function lcm(n1, n2) {
 
 //6, 8
 //6 c 12 c 18 c 24 c
-let smaller = Math.min(n1, n2);
-let bigger = Math.max(n1, n2);
-let s1 = smaller;
+let smaller = bigInt(Math.min(n1, n2));
+let bigger = bigInt(Math.max(n1, n2));
+let s1 = bigInt(smaller);
 
-if (smaller === 1 || bigger === 1){
-  return bigInt(s1).value;
+if (smaller.value === 1){
+  return bigger.value;
+} else if (bigger.value === 1) {
+  return smaller.value;
 }
 
-while (s1 % bigger !== 0){
+while (s1.value % bigger.value !== 0){
 
-  s1 = s1 + smaller;
+  s1 = s1.add(smaller);
 
   }
-  return bigInt(s1).value;
+  return s1.value;
 }
