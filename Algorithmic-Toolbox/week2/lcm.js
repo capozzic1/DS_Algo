@@ -14,17 +14,24 @@ function readLine(line) {
   process.exit();
 }
 
-function lcm(a, b) {
-  let s1 = 0,
-    s2 = 0,
-    len = 3;
+const bigInt = require('big-integer');
 
-  while (len--) {
-    s1 += a;
-    s2 += b;
+function lcm(n1, n2) {
 
-    console.log(s1, s2)
+//6, 8
+//6 c 12 c 18 c 24 c
+let smaller = Math.min(n1, n2);
+let bigger = Math.max(n1, n2);
+let s1 = smaller;
+
+if (smaller === 1 || bigger === 1){
+  return bigInt(s1).value;
+}
+
+while (s1 % bigger !== 0){
+
+  s1 = s1 + smaller;
 
   }
-  //return s1;
+  return bigInt(s1).value;
 }
