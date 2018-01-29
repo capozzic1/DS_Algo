@@ -13,27 +13,18 @@ function readLine(line) {
   console.log(lcm(a, b));
   process.exit();
 }
-
 const bigInt = require('big-integer');
-
-function lcm(n1, n2) {
-
-//6, 8
-//6 c 12 c 18 c 24 c
-let smaller = bigInt(Math.min(n1, n2));
-let bigger = bigInt(Math.max(n1, n2));
-let s1 = bigInt(smaller);
-
-if (smaller.value === 1){
-  return bigger.value;
-} else if (bigger.value === 1) {
-  return smaller.value;
+//226553150 1023473145
+function lcm(a, b) {
+  var c = bigInt(a).multiply(b).over(gcd(a, b));
+  return bigInt(c).toString();
 }
 
-while (s1.value % bigger.value !== 0){
-
-  s1 = s1.add(smaller);
-
+function gcd(a, b) {
+  if (b === 0) {
+    //console.log(`${a} base`)
+    return a
   }
-  return s1.value;
+  //console.log(`${a},${b} call`)
+  return gcd(b, a % b);
 }

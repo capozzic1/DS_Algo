@@ -14,29 +14,20 @@ function readLine(line) {
   console.log(lcm(a, b));
   process.exit();
 }
-
 const bigInt = require('big-integer');
-
-function lcm(n1, n2) {
-
-//6, 8
-//6 c 12 c 18 c 24 c
-let smaller = Math.min(n1, n2);
-let bigger = Math.max(n1, n2);
-let s1 = smaller;
-
-if (smaller === 1){
-  return bigInt(bigger).value;
-} else if (bigger === 1) {
-  return bigInt(smaller).value;
+//226553150 1023473145
+function lcm(a, b) {
+  var c = bigInt(a).multiply(b).over(gcd(a, b));
+  return bigInt(c).toString();
 }
 
-while (s1 % bigger !== 0){
-
-  s1 = s1 + smaller;
-
+function gcd(a, b) {
+  if (b === 0) {
+    //console.log(`${a} base`)
+    return a
   }
-  return bigInt(s1).value;
+  //console.log(`${a},${b} call`)
+  return gcd(b, a % b);
 }
 
 },{"big-integer":2,"readline":undefined}],2:[function(require,module,exports){
