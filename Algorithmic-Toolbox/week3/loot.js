@@ -15,20 +15,19 @@ rstream.on('data', function(buf) {
 
 function getMaxValue(arr) {
   let nWeight = arr.splice(0, 1);
-  let n = nWeight[0].splice(0,1);
-  let weight = nWeight[0].splice(0,1);
+  let n = nWeight[0].splice(0, 1);
+  let weight = nWeight[0].splice(0, 1);
   let maxVal = 0,
-  knapsack = 0;
+    knapsack = 0;
 
+  if (n == 1) {
 
-  if (n == 1){
-
-    arr[0][2] = arr[0][0]/arr[0][1];
+    arr[0][2] = arr[0][0] / arr[0][1];
     console.log(arr);
     let vd = arr[0][2];
     maxVal = weight * vd;
     return maxVal;
-  //  maxVal = ;
+    //  maxVal = ;
     //console.log(typeof arr[0][1], typeof arr[0][2])
     //return maxVal;
   }
@@ -40,14 +39,16 @@ function getMaxValue(arr) {
 
   arr.sort((a, b) => b[2] - a[2]);
 
-  for(let i = 0; i < n; i++){
+  for (let i = 0; i < n; i++) {
 
-    if (arr[i][1] < weight && knapsack < weight){
+    if (arr[i][1] < weight && knapsack < weight) {
       maxVal += arr[i][0];
       knapsack += arr[i][1];
+    } else if (knapsack > arr[i][1]) {
+      maxVal = maxVal + (knapsack - arr[i][1]) * arr[i][2];
     }
   }
 
-
+  //answer: 195
   return maxVal;
 }
