@@ -16,6 +16,9 @@ class Stack {
   peek() {
     return this.stack[this.stack.length - 1];
   }
+  isEmpty() {
+    return this.stack.length === 0;
+  }
 }
 
 let b = new Stack();
@@ -23,4 +26,4 @@ b.push("babababababababa");
 b.push("babababababababa");
 b.push("babababababababa1");
 
-console.log(b.peek());
+console.log(b.isEmpty());
